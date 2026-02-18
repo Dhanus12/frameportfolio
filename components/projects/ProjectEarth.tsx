@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { ExternalLink, Github, Server } from 'lucide-react';
 
@@ -39,33 +39,11 @@ const projects = [
 
 export default function ProjectEarth() {
     const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ['start end', 'end start'],
-    });
-
-    const videoOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
     return (
-        <section ref={containerRef} className="relative min-h-[200vh] py-20">
+        <section ref={containerRef} className="relative min-h-screen py-20 px-6">
 
-            {/* Sticky Video Background */}
-            <div className="sticky top-0 h-screen w-full overflow-hidden -z-10">
-                <motion.div style={{ opacity: videoOpacity }} className="absolute inset-0 w-full h-full">
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover"
-                    >
-                        <source src="/assets/Create_a_4k_202602171231_ofuj0.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                    {/* Dark Overlay for readability */}
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
-                </motion.div>
-            </div>
+
 
             {/* Scrolling Content */}
             <div className="relative z-10 max-w-6xl mx-auto px-6 space-y-32 -mt-[100vh] pt-[120vh]">
